@@ -289,7 +289,7 @@
             These savings translate into significant system benefits:
             <ol>
               <li><strong>Enhanced Throughput:</strong> <span class="texttt">APOLLO</span> and <span class="texttt">APOLLO-Mini</span> achieve up to 3× throughput on a 4×A100-80GB setup compared to Adam by fully utilizing memory to support 4× larger batch sizes.</li>
-              <li><strong>Improved Model Scalability:</strong> <span class="texttt">APOLLO-Mini</span> <em>for the first time</em> enables pre-training a LLaMA-13B model on a single A100 GPU (80G) without requiring other system-level optimizations.</li>
+              <li><strong>Improved Model Scalability:</strong> <span class="texttt">APOLLO-Mini</span> <em>for the first time</em>  enables pre-training LLaMA-13B model with naive DDP on A100-80G without requiring other system-level optimizations.</li>
               <li><strong>Low-End GPU Pre-training:</strong> Combined with quantization, the <span class="texttt">APOLLO</span> series <em>for the first time</em> enables the training of LLaMA-7B from scratch using less than 12 GB of memory.</li>
             </ol>
           </p>
@@ -309,7 +309,7 @@
       <h2 class="title is-3 has-text-centered">Train an LLaMA-7B with 3× Throughput Compared to Adam</h2>
       <div class="content has-text-justified">
         <p>
-          The following videos demonstrate the training throughput achieved with <strong>APOLLO</strong> on the LLaMA-7B model, showing a 3× improvement compared to Adam optimizer.
+          The following videos demonstrate the training throughput achieved with <strong>APOLLO</strong> on the LLaMA-7B model, showing up to 3× improvement compared to Adam optimizer.
         </p>
       </div>
       <div class="columns is-centered is-vcentered">
