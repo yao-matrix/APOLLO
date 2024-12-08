@@ -27,7 +27,7 @@ We further propose an extreme memory-efficient version, APOLLO-mini, which utili
 We conduct extensive experiments across different tasks and model architectures, showing that APOLLO series performs **generally on-par with, or even better than Adam(W)**. Meanwhile, APOLLO  achieves **even greater memory savings than Galore**, by almost eliminating the optimization states in AdamW.
 These savings translate into significant system benefits:
 *  **Enhanced Throughput**: APOLLO and APOLLO-mini achieve up to 3x throughput on a 4xA100-80GB setup compared to Adam by fully utilizing memory to support 4x larger batch sizes.
-* **Improved Model Scalability**: APOLLO-mini ***for the first time*** enables pre-training a LLaMA-13B model on a single A100 GPU (80G) without requiring other system-level optimizations.
+* **Improved Model Scalability**: APOLLO-mini ***for the first time***  enables pre-training LLaMA-13B model with naive DDP on A100-80G without requiring other system-level optimizations
 * **Low-End GPU Pre-training**: Combined with quantization, the APOLLO series ***for the first time*** enables the training of LLaMA-7B from scratch using less than 12 GB of memory. 
 
 ## 📬 Contact
