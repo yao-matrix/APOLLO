@@ -308,6 +308,57 @@
   </div>
 </section>
 
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Method Highlights -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method Highlights</h2>
+        <div class="content has-text-justified">
+          <p>
+            The <span class="texttt">APOLLO</span> series introduces several innovative approaches for memory-efficient LLM training. Here are the key highlights of our method:
+          </p>
+          <ul style="text-align: left;">
+            <li>
+              <strong>Structured Learning Rate Updates:</strong>  
+              We identify the redundancy in Adam(W)'s element-wise learning rate update rule and find a structured learning rate update rule is sufficient for LLM training.
+            </li>
+            <li>
+              <strong>Low-Rank Auxiliary State (APOLLO):</strong>  
+              A practical, memory-efficient approximation of channel-wise gradient scaling using pure random projections in a low-rank auxiliary space. This method achieves superior performance to AdamW with significantly lower memory requirements.
+            </li>
+            <li>
+              <strong>Extreme Memory Efficiency (APOLLO-Mini):</strong>  
+              Tensor-wise gradient scaling using only a rank-1 auxiliary sub-space, achieving SGD-level memory costs while still on-par or even outperforming Adam(W) in pre-training tasks.
+            </li>
+          </ul>
+          <p>
+            These innovations make <span class="texttt">APOLLO</span> and <span class="texttt">APOLLO-Mini</span> ideal for memory-constrained environments, delivering both scalability and performance without compromise.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- Framework Overview -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h3 class="title is-4">Framework Overview</h3>
+        <img src="docs/static/images/apollo_framework.png" alt="APOLLO Framework" style="width: 40%;">
+        <p><em>Figure 1: The APOLLO Framework for Memory-Efficient LLM Training. The channel-wise or tensor-wise gradient scaling factor is obtained via an auxiliary low-rank optimizer state, constructed using pure random projection (no SVD required).</em></p>
+      </div>
+    </div>
+
+    <!-- Benefits and Results -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h3 class="title is-4">Benefits and Results</h3>
+        <img src="docs/static/images/apollo_7b.jpg" alt="System Benefits of APOLLO" style="width: 90%;">
+        <p><em>Figure 2: System Benefits of APOLLO for Pre-training LLaMA 7B. (Left): Memory breakdown comparison for a single batch size. (Right): End-to-end training throughput on 8 A100-80GB GPUs.</em></p>
+      </div>
+    </div>
+    </div>
+
+</section>
 
 <section class="section">
   <div class="container is-max-desktop">

@@ -4,8 +4,44 @@
 
 ![hippo](docs/static/videos/apollo_demo.gif)
 
-## 💡 Introduction
-We introduce APOLLO (Approximated Gradient Scaling for Memory Efficient LLM Optimization), a novel method designed to optimize the memory efficiency of training large language models (LLM), with **SGD-like memory cost** but **AdamW-level performance** for pre-training!
+## 💡 Quick Introduction!
+
+We introduce **APOLLO** (Approximated Gradient Scaling for Memory Efficient LLM Optimization), a novel method designed to optimize the memory efficiency of training large language models (LLM), offering **SGD-like memory cost** while delivering **AdamW-level performance** for pre-training!
+
+---
+
+### 🔍 Method
+
+APOLLO effectively integrates two major ideas for memory-efficient LLM training: **low-rank approximation** (GaLore) and **optimizer state redundancy reduction** (Adam-mini). However, APOLLO takes memory efficiency to a new level, achieving **significant memory savings** (below GaLore and its variants, and close to SGD) while maintaining or surpassing the performance of Adam(W).
+
+Our key contributions include:
+
+- **Structured Learning Rate Updates for LLM Training**:  We identify that structured learning rate updates, such as channel-wise or tensor-wise scaling, are sufficient for LLM training. This approach explores *redundancy in AdamW's element-wise learning rate update rule*, forming a basis for our APOLLO method.
+
+- **Approximated Channel-wise Gradient Scaling in a Low-Rank Auxiliary Space (APOLLO)**:  
+  APOLLO proposes a practical and memory-efficient method to approximate channel-wise gradient scaling factors in an auxiliary low-rank space using **pure random projections**. This method achieves superior performance compared to AdamW, even with lower-rank approximations, while maintaining excellent memory efficiency.
+
+- **Minimal-Rank Tensor-wise Gradient Scaling (APOLLO-Mini)**:  
+  APOLLO-Mini introduces extreme memory efficiency by applying tensor-wise gradient scaling using only **a rank-1 auxiliary sub-space**. This results in SGD-level memory costs while outperforming AdamW, showcasing the effectiveness of the approach.
+
+---
+
+### Framework Overview
+<div align="center">
+  <img src="docs/static/images/apollo_framework.png" alt="APOLLO Framework" width="40%">
+</div>
+
+*Figure 1: The APOLLO Framework for Memory-Efficient LLM Training. The channel-wise or tensor-wise gradient scaling factor is obtained via an auxiliary low-rank optimizer state, constructed using pure random projection (no SVD required).*
+
+---
+
+### Benefits and Results
+<div align="center">
+  <img src="docs/static/images/apollo_7b.jpg" alt="System Benefits of APOLLO" width="90%">
+</div>
+
+*Figure 2: System Benefits of APOLLO for Pre-training LLaMA 7B. (left): Memory breakdown comparison for a single batch size; (right): End-to-end training throughput on 8 A100-80GB GPUs*
+
 
 ## 💪To-Do List
 
