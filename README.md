@@ -50,6 +50,7 @@ Our key contributions include:
 
 ## 🔥 News
 
+- [2024/12] For a quick try-out, please check out the [Unofficial Implementation](https://github.com/MadsToftrup/Apollo-dev) implemented by third-party contributors.
 - [2024/12] [[Paper]](https://arxiv.org/abs/2412.05270) is on arXiv!
 
 ## 📚 Abstract
