@@ -339,24 +339,26 @@
       </div>
     </div>
   </div>
-    <!-- Framework Overview -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h3 class="title is-4">Framework Overview</h3>
-        <img src="./static/images/apollo_framework.png" alt="APOLLO Framework" style="width: 40%;">
-        <p><em>Figure 1: The APOLLO Framework for Memory-Efficient LLM Training. The channel-wise or tensor-wise gradient scaling factor is obtained via an auxiliary low-rank optimizer state, constructed using pure random projection (no SVD required).</em></p>
-      </div>
+  <!-- Framework Overview -->
+  <div style="flex: 1; max-width: 50%; margin: auto; text-align: center;">
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <img src="./static/images/apollo_framework.png" alt="APOLLO Framework" style="width: 100%; max-width: 500px; height: auto;">
+      <p style="margin-top: 10px; font-size: 14px;">
+        <em>Figure 1: The APOLLO Framework for Memory-Efficient LLM Training. The channel-wise or tensor-wise gradient scaling factor is obtained via an auxiliary low-rank optimizer state, constructed using pure random projection (no SVD required).</em>
+      </p>
     </div>
+  </div>
 
-    <!-- Benefits and Results -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h3 class="title is-4">Benefits and Results</h3>
-        <img src="./static/images/apollo_7b.jpg" alt="System Benefits of APOLLO" style="width: 90%;">
-        <p><em>Figure 2: System Benefits of APOLLO for Pre-training LLaMA 7B. (Left): Memory breakdown comparison for a single batch size. (Right): End-to-end training throughput on 8 A100-80GB GPUs.</em></p>
-      </div>
+  <!-- Benefits and Results -->
+  <div style="flex: 1; max-width: 70%; margin: auto; text-align: center;">
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <img src="./static/images/apollo_7b.jpg" alt="System Benefits of APOLLO" style="width: 100%; max-width: 700px; height: auto;">
+      <p style="margin-top: 10px; font-size: 14px;">
+        <em>Figure 2: System Benefits of APOLLO for Pre-training LLaMA 7B. (Left): Memory breakdown comparison for a single batch size. (Right): End-to-end training throughput on 8 A100-80GB GPUs.</em>
+      </p>
     </div>
-    </div>
+  </div>
+
 
 </section>
 
