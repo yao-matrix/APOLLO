@@ -1,6 +1,6 @@
 # 🚀 APOLLO: SGD-like Memory, AdamW-level Performance
 
-### [[paper]](https://arxiv.org/abs/2410.19313) [[website]](https://zhuhanqing.github.io/APOLLO/)
+### [[paper]](https://arxiv.org/abs/2412.05270) [[website]](https://zhuhanqing.github.io/APOLLO/)
 
 ![hippo](docs/static/videos/apollo_demo.gif)
 
@@ -50,7 +50,7 @@ Our key contributions include:
 
 ## 🔥 News
 
-- [2024/12] [[Paper]](https://arxiv.org/abs/2410.19313) is on arXiv!
+- [2024/12] [[Paper]](https://arxiv.org/abs/2412.05270) is on arXiv!
 
 ## 📚 Abstract
 Large language models (LLMs) demonstrate remarkable capabilities but are notoriously memory-intensive during training, particularly with the popular Adam optimizer. This memory burden often necessitates using more GPUs, smaller batch sizes, or high-end hardware, thereby limiting scalability and training efficiency. To address this, various memory-efficient optimizers have been proposed to reduce optimizer memory usage. However, they face key challenges: (i) reliance on costly SVD operations (e.g., GaLore, Fira); (ii) significant performance trade-offs compared to AdamW (e.g., Flora); and (iii) still substantial memory overhead of optimization states in order to maintain competitive performance (e.g., 1/4 rank in Galore, and full-rank first momentum in Adam-mini).
@@ -78,3 +78,14 @@ For questions or collaboration inquiries, feel free to reach out our core contri
 
 If you find APOLLO useful in your work, please consider citing our paper:
 
+```bibtex
+@misc{zhu2024apollosgdlikememoryadamwlevel,
+      title={APOLLO: SGD-like Memory, AdamW-level Performance}, 
+      author={Hanqing Zhu and Zhenyu Zhang and Wenyan Cong and Xi Liu and Sem Park and Vikas Chandra and Bo Long and David Z. Pan and Zhangyang Wang and Jinwon Lee},
+      year={2024},
+      eprint={2412.05270},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2412.05270}, 
+}
+```
