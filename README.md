@@ -1,6 +1,6 @@
 # 🚀 APOLLO: SGD-like Memory, AdamW-level Performance
 
-### [[paper]](https://arxiv.org/abs/2412.05270) [[Project Page]](https://zhuhanqing.github.io/APOLLO/)
+### [[Paper]](https://arxiv.org/abs/2412.05270) [[Project Page]](https://zhuhanqing.github.io/APOLLO/)
 
 ![hippo](docs/static/videos/apollo_demo.gif)
 
