@@ -50,8 +50,9 @@ Our key contributions include:
 
 ## 🔥 News
 
-- [2024/12] For a quick try-out, please check out the [Unofficial Implementation](https://github.com/MadsToftrup/Apollo-dev) implemented by third-party contributors.
-- [2024/12] [[Paper]](https://arxiv.org/abs/2412.05270) is on arXiv!
+- [2024/12] **APOLLO validated by third-party Julia implementation!**: Our APOLLO optimizer has been independently validated by a third party using a Julia implementation. Check out the [post](https://bsky.app/profile/benjmurrell.bsky.social/post/3lcyfrf5b7k2u). They are also working to integrate APOLLO into [FluxML](https://github.com/FluxML/Optimisers.jl/pull/196).
+- [2024/12] **Unofficial Implementation Available!**: For a quick try-out, please check out the [Unofficial Implementation](https://github.com/MadsToftrup/Apollo-dev) implemented by third-party contributors and validated by us.
+- [2024/12] **APOLLO Paper Released**: Our paper is now available on arXiv! Check it out here: [[Paper]](https://arxiv.org/abs/2412.05270).
 
 ## 📚 Abstract
 Large language models (LLMs) demonstrate remarkable capabilities but are notoriously memory-intensive during training, particularly with the popular Adam optimizer. This memory burden often necessitates using more GPUs, smaller batch sizes, or high-end hardware, thereby limiting scalability and training efficiency. To address this, various memory-efficient optimizers have been proposed to reduce optimizer memory usage. However, they face key challenges: (i) reliance on costly SVD operations (e.g., GaLore, Fira); (ii) significant performance trade-offs compared to AdamW (e.g., Flora); and (iii) still substantial memory overhead of optimization states in order to maintain competitive performance (e.g., 1/4 rank in Galore, and full-rank first momentum in Adam-mini).
