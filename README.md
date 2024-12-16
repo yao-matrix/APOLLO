@@ -76,6 +76,10 @@ For questions or collaboration inquiries, feel free to reach out our core contri
 - 📧 Email: [zhenyu.zhang@utexas.edu](mailto:zhenyu.zhang@utexas.edu)
 
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=zhuhanqing/APOLLO&type=Date)](https://star-history.com/#zhuhanqing/APOLLO&Date)
+
 ## 📖 Citation
 
 If you find APOLLO useful in your work, please consider citing our paper:
