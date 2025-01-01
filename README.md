@@ -93,7 +93,7 @@ param_groups = [{'params': non_lowrank_params},
                   'proj': 'random', 
                   'scale_type': 'tensor', 
                   'scale': 128,
-			            'update_proj_gap': 200, 
+                  'update_proj_gap': 200, 
                   'proj_type': 'std'}]
 optimizer = APOLLO(param_groups, lr=0.01)
 ```
@@ -207,4 +207,5 @@ The majority of APOLLO is licensed under CC-BY-NC, however portions of the proje
 ## Acknowledgements
 
 * The above code is based on the codebase of [GaLore](https://github.com/jiaweizzhao/GaLore) and [Q-GaLore](https://github.com/VITA-Group/Q-GaLore).
+* We'd like to express our gratitude to [Fira](https://github.com/xichen-fy/Fira) for their invetion of norm-growth-limiter.
 * We'd like to express our gratitude to [@murrellb](https://github.com/murrellb) for the pull request to FluxML! 
