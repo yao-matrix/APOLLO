@@ -2,19 +2,17 @@
 
 A memory-efficient optimizer designed for **large language model (LLM) pre-training** and **full-parameter fine-tuning**, offering **SGD-like memory cost** with **AdamW-level performance**.
 
-<!-- ### 🔗 [Paper](https://arxiv.org/abs/2412.05270) • [Project Page](https://zhuhanqing.github.io/APOLLO/) -->
-
 <p align="center">
   🔗 
   <a href="https://arxiv.org/abs/2412.05270">Paper</a> • <a href="https://zhuhanqing.github.io/APOLLO/">Project Page</a>
 </p>
 
-![hippo](docs/static/videos/apollo_demo.gif)
+![hippo](https://raw.githubusercontent.com/zhuhanqing/APOLLO/main/docs/static/videos/apollo_demo.gif)
 
 ## 🔥 News
 - [2024/12] We are working on integrating APOLLO into [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory).
 
-- [2024/12] We are happy to release **the official implementation of APOLLO v1.0.0** in PyPI (see [here](xx)). We support QAPOLLO using int8 weight quantization from Q-Galore.
+- [2024/12] We are happy to release **the official implementation of APOLLO v1.0.0** in PyPI (see [here](https://pypi.org/project/apollo-torch/)). We support QAPOLLO using int8 weight quantization from Q-Galore.
 - [2024/12] **APOLLO validated by third-party Julia implementation!**: Our APOLLO optimizer has been independently validated by a third party using a Julia implementation. Check out the [post](https://bsky.app/profile/benjmurrell.bsky.social/post/3lcyfrf5b7k2u). They are also working to integrate APOLLO into [FluxML](https://github.com/FluxML/Optimisers.jl/pull/196).
 - [2024/12] **APOLLO Paper Released**: Our paper is now available on arXiv! Check it out here: [[Paper]](https://arxiv.org/abs/2412.05270).
 
@@ -42,14 +40,14 @@ Our key contributions include:
 
 ### Framework Overview
 <div align="center">
-  <img src="docs/static/images/apollo_framework.png" alt="APOLLO Framework" width="40%">
+  <img src="https://raw.githubusercontent.com/zhuhanqing/APOLLO/main/docs/static/images/apollo_framework.png" alt="APOLLO Framework" width="40%">
 </div>
 
 *Figure 1: The APOLLO Framework for Memory-Efficient LLM Training. The channel-wise or tensor-wise gradient scaling factor is obtained via an auxiliary low-rank optimizer state, constructed using pure random projection (no SVD required).*
 
 ### Benefits and Results
 <div align="center">
-  <img src="docs/static/images/apollo_7b.jpg" alt="System Benefits of APOLLO" width="90%">
+  <img src="https://raw.githubusercontent.com/zhuhanqing/APOLLO/main/docs/static/images/apollo_7b.jpg" alt="System Benefits of APOLLO" width="90%">
 </div>
 
 *Figure 2: System Benefits of APOLLO for Pre-training LLaMA 7B. (left): Memory breakdown comparison for a single batch size; (right): End-to-end training throughput on 8 A100-80GB GPUs*
@@ -139,7 +137,7 @@ Accordingly, we further validate the effectiveness of the **APOLLO** series by p
 Both **APOLLO** and **APOLLO-Mini** demonstrate superior performance compared to **AdamW**, while drastically reducing optimizer memory usage—by as much as 1/8 or even 1/1024 of AdamW’s requirements. Moreover, these methods tend to exhibit even stronger performance in later stages, when more training tokens are involved. This makes them a highly promising option for partial LLM pre-training scenarios involving long context windows and trillions of training tokens.
 
 <div align="center">
-  <img src="docs/static/images/apollo_350m_long_context.jpg" alt="APOLLO 350M long context" width="80%">
+  <img src="https://raw.githubusercontent.com/zhuhanqing/APOLLO/main/docs/static/images/apollo_350m_long_context.jpg" alt="APOLLO 350M long context" width="80%">
 </div>
 
 *Figure 3:  Perplexity curves of the LLaMA-350M model trained in a long-context window setting.*
