@@ -1,12 +1,26 @@
 # 🚀 APOLLO: SGD-like Memory, AdamW-level Performance
 
-### [[Paper]](https://arxiv.org/abs/2412.05270) [[Project Page]](https://zhuhanqing.github.io/APOLLO/)
+A memory-efficient optimizer designed for **large language model (LLM) pre-training** and **full-parameter fine-tuning**, offering **SGD-like memory cost** with **AdamW-level performance**.
+
+<!-- ### 🔗 [Paper](https://arxiv.org/abs/2412.05270) • [Project Page](https://zhuhanqing.github.io/APOLLO/) -->
+
+<p align="center">
+  🔗 
+  <a href="https://arxiv.org/abs/2412.05270">Paper</a> • <a href="https://zhuhanqing.github.io/APOLLO/">Project Page</a>
+</p>
 
 ![hippo](docs/static/videos/apollo_demo.gif)
 
-## 💡 Quick Introduction!
+## 🔥 News
+- [2024/12] We are working on integrating APOLLO into [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory).
 
-We introduce **APOLLO** (Approximated Gradient Scaling for Memory Efficient LLM Optimization), a novel method designed to optimize the memory efficiency of training large language models (LLM), offering **SGD-like memory cost** while delivering **AdamW-level performance** for pre-training!
+- [2024/12] We are happy to release **the official implementation of APOLLO v1.0.0** in PyPI (see [here](xx)). We support QAPOLLO using int8 weight quantization from Q-Galore.
+- [2024/12] **APOLLO validated by third-party Julia implementation!**: Our APOLLO optimizer has been independently validated by a third party using a Julia implementation. Check out the [post](https://bsky.app/profile/benjmurrell.bsky.social/post/3lcyfrf5b7k2u). They are also working to integrate APOLLO into [FluxML](https://github.com/FluxML/Optimisers.jl/pull/196).
+- [2024/12] **APOLLO Paper Released**: Our paper is now available on arXiv! Check it out here: [[Paper]](https://arxiv.org/abs/2412.05270).
+
+## 💡Quick Introduction!
+
+We introduce **APOLLO** (Approximated Gradient Scaling for Memory Efficient LLM Optimization), a novel method designed to optimize the memory efficiency of training large language models (LLM), offering **SGD-like memory cost** while delivering **AdamW-level performance** for both pre-training and finetuning!
 
 ---
 
@@ -33,8 +47,6 @@ Our key contributions include:
 
 *Figure 1: The APOLLO Framework for Memory-Efficient LLM Training. The channel-wise or tensor-wise gradient scaling factor is obtained via an auxiliary low-rank optimizer state, constructed using pure random projection (no SVD required).*
 
----
-
 ### Benefits and Results
 <div align="center">
   <img src="docs/static/images/apollo_7b.jpg" alt="System Benefits of APOLLO" width="90%">
@@ -42,17 +54,103 @@ Our key contributions include:
 
 *Figure 2: System Benefits of APOLLO for Pre-training LLaMA 7B. (left): Memory breakdown comparison for a single batch size; (right): End-to-end training throughput on 8 A100-80GB GPUs*
 
+---
+## How to use?
 
-## 💪To-Do List
+### 📦 Installation
 
-- \[ \] Offical APOLLO release is on the way
-- \[ \] APOLLO combined with int8 weight quantization from Q-Galore
+### Install APOLLO via pip
+You can install the APOLLO optimizer directly from pip:
+```bash
+pip install apollo-torch
+```
 
-## 🔥 News
+### Install APOLLO from source
+To install APOLLO from the source code:
 
-- [2024/12] **APOLLO validated by third-party Julia implementation!**: Our APOLLO optimizer has been independently validated by a third party using a Julia implementation. Check out the [post](https://bsky.app/profile/benjmurrell.bsky.social/post/3lcyfrf5b7k2u). They are also working to integrate APOLLO into [FluxML](https://github.com/FluxML/Optimisers.jl/pull/196).
-- [2024/12] **Unofficial Implementation Available!**: For a quick try-out, please check out the [Unofficial Implementation](https://github.com/MadsToftrup/Apollo-dev) implemented by third-party contributors and validated by us.
-- [2024/12] **APOLLO Paper Released**: Our paper is now available on arXiv! Check it out here: [[Paper]](https://arxiv.org/abs/2412.05270).
+```bash
+git clone https://github.com/zhuhanqing/APOLLO.git
+cd APOLLO
+pip install -e .
+```
+
+### Install experiment dependencies
+
+```bash
+pip install -r exp_requirements.txt
+```
+
+### 📖 Usage
+
+#### Save optimizer memory using APOLLO optimizers
+```
+from apollo_torch import APOLLOAdamW
+# define param groups as lowrank_params and regular params
+param_groups = [{'params': non_lowrank_params}, 
+                {'params': 
+                  lowrank_params, 
+                  'rank': 1, 
+                  'proj': 'random', 
+                  'scale_type': 'tensor', 
+                  'scale': 128,
+			            'update_proj_gap': 200, 
+                  'proj_type': 'std'}]
+optimizer = APOLLO(param_groups, lr=0.01)
+```
+
+#### Hyperparameter choices
+For APOLLO and APOLLO-Mini, we have the following arguments
+
+#### `rank`
+- Specifies the rank of the auxiliary sub-space used for gradient scaling.
+- **Default value:** 
+    - `256` for APOLLO works well for 1B and 7B model.
+    - `1` for APOLLO-Mini. 
+
+#### `scale_type`
+- Determines how the scaling factors are applied:
+  - **`channel`**: Applies gradient scaling at the channel level (APOLLO)
+  - **`tensor`**: Applies gradient scaling at the tensor level (APOLLO-Mini).
+
+#### `scale`
+- Governs the scaling factor for gradient updates. Can be tuned for better performance.
+    - `1` for APOLLO by default (validated on A100).
+    - `128` for APOLLO-Mini by default. You can scale it larger, especially when the model is large.
+
+---
+
+### Benchmark 1: Pre-Training LLaMA on C4 dataset
+
+We provide the command in `scripts/benchmark_c4` for pretraining LLaMA model with sizes from 60M to 7B on C4 dataset.
+
+```
+# num_rank: 1 for APOLLO-Mini, 1/4 of the original dim for APOLLO (same as Galore)
+# scale_type: channel or tensor
+# projection type: random (option: svd)
+# scale: related with rank, larger rank generally works well with smaller scale, we use 128 for rank=1
+
+```
+
+### Benchmark 2: Pre-Training LLaMA on C4 dataset with long context window
+Compared to academic settings, the industry trains large language models (LLMs) with significantly longer context windows (1k-8k tokens) and on hundreds of billions of tokens. 
+
+Accordingly, we further validate the effectiveness of the **APOLLO** series by pre-training a **LLaMA-350M** on a 1024-token context window—**four times larger than the original GaLore usage**. To establish a robust baseline, we vary **AdamW**’s learning rate across `[1e-3, 2.5e-3, 5e-3, 7.5e-3, 1e-2]`. We also “lazily” tune the scale factor of the **APOLLO** series by testing **APOLLO** in `[√1, √2, √3]` and **APOLLO-Mini** in `[√128, √256, √384]`, while keeping the learning rate fixed at `1e-2`.
+
+Both **APOLLO** and **APOLLO-Mini** demonstrate superior performance compared to **AdamW**, while drastically reducing optimizer memory usage—by as much as 1/8 or even 1/1024 of AdamW’s requirements. Moreover, these methods tend to exhibit even stronger performance in later stages, when more training tokens are involved. This makes them a highly promising option for partial LLM pre-training scenarios involving long context windows and trillions of training tokens.
+
+<div align="center">
+  <img src="docs/static/images/apollo_350m_long_context.jpg" alt="APOLLO 350M long context" width="80%">
+</div>
+
+*Figure 3:  Perplexity curves of the LLaMA-350M model trained in a long-context window setting.*
+
+### Benchmark 3: Pretraining LLaMA-7B model within 16GB memory
+
+The command of training LLaMA-7B model on single GPU as provided within `scripts/single_gpu`. With 1 batch size, the following scripts can pre-train a LLaMA-7B model within 11GB memory (tested on a single A100 GPU)
+
+---
+
+
 
 ## 📚 Abstract
 Large language models (LLMs) demonstrate remarkable capabilities but are notoriously memory-intensive during training, particularly with the popular Adam optimizer. This memory burden often necessitates using more GPUs, smaller batch sizes, or high-end hardware, thereby limiting scalability and training efficiency. To address this, various memory-efficient optimizers have been proposed to reduce optimizer memory usage. However, they face key challenges: (i) reliance on costly SVD operations (e.g., GaLore, Fira); (ii) significant performance trade-offs compared to AdamW (e.g., Flora); and (iii) still substantial memory overhead of optimization states in order to maintain competitive performance (e.g., 1/4 rank in Galore, and full-rank first momentum in Adam-mini).
@@ -67,6 +165,11 @@ These savings translate into significant system benefits:
 *  **Enhanced Throughput**: APOLLO and APOLLO-mini achieve up to 3x throughput on a 4xA100-80GB setup compared to Adam by fully utilizing memory to support 4x larger batch sizes.
 * **Improved Model Scalability**: APOLLO-mini ***for the first time***  enables pre-training LLaMA-13B model with naive DDP on A100-80G without requiring other system-level optimizations
 * **Low-End GPU Pre-training**: Combined with quantization, the APOLLO series ***for the first time*** enables the training of LLaMA-7B from scratch using less than 12 GB of memory. 
+
+
+## 💪To-Do List
+
+- [ ] Support APOLLO with FSDP.
 
 ## 📬 Contact
 
@@ -95,3 +198,13 @@ If you find APOLLO useful in your work, please consider citing our paper:
       url={https://arxiv.org/abs/2412.05270}, 
 }
 ```
+
+## License
+
+The majority of APOLLO is licensed under CC-BY-NC, however portions of the project are available under separate license terms: GaLore is licensed under the Apache 2.0 license.
+
+
+## Acknowledgements
+
+* The above code is based on the codebase of [GaLore](https://github.com/jiaweizzhao/GaLore) and [Q-GaLore](https://github.com/VITA-Group/Q-GaLore).
+* We'd like to express our gratitude to [@murrellb](https://github.com/murrellb) for the pull request to FluxML! 
