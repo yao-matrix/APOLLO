@@ -8,7 +8,7 @@ with open("README.md", "r", encoding="utf-8") as f:
 
 setup(
     name="apollo-torch",
-    version="1.0",
+    version="1.0.1",
     description="APOLLO: SGD-like Memory, AdamW-level Performance",
     long_description=long_description,
     long_description_content_type="text/markdown",
