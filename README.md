@@ -121,7 +121,7 @@ To stabilize training, we adopt the **Norm-Growth Limiter (NL)** from [Fira](htt
 
 There are two ways to apply the Norm-Growth Limiter based on when it's used relative to the heuristical (`scale`):
 1. **After Scaling**: NL is applied after the gradient is multiplied by the `scale`.
-   - Recommended for smaller models or when training involves fewer warmup steps.
+   - Recommended for when training involves fewer warmup steps, e.g., LLaMA 60M and 130M with APOLLO-Mini.
    - Enable this by setting `--scale_front`.
 2. **Before Scaling**: NL is applied before the gradient is scaled.
    - With sufficient warmup steps, both methods yield similar performance for large models.
