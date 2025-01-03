@@ -147,7 +147,7 @@ def setup_optimization(args, model, trainable_params, param_groups, id_lowrank_p
         optimizer = GaLoreAdamW(param_groups, lr=args.lr, weight_decay=args.weight_decay)
 
     elif args.optimizer.lower() == "apollo_adamw":
-        optimizer = APOLLOAdamW(param_groups, lr=args.lr, weight_decay=args.weight_decay)
+        optimizer = APOLLOAdamW(param_groups, lr=args.lr, weight_decay=args.weight_decay, scale_front=args.scale_front)
 
     elif args.optimizer.lower() == "q_apollo":
         optimizer = QAPOLLOAdamW(

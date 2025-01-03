@@ -2,7 +2,7 @@
 num_rank=1
 scale_type=tensor
 proj_type=random
-apollo_scale=128
+apollo_scale=192.0 # exact 1/4 of llama model dimension
 
 torchrun --standalone --nproc_per_node 4 main_pretrain.py \
     --model_config configs/llama_130m.json \
@@ -14,6 +14,7 @@ torchrun --standalone --nproc_per_node 4 main_pretrain.py \
     --warmup_steps 2000 \
     --num_training_steps 20000 \
     --optimizer apollo_adamw \
+    --scale_front \
     --apollo_scale ${apollo_scale} \
     --rank ${num_rank} \
     --scale_type ${scale_type} \

@@ -77,6 +77,7 @@ def parse_args(args):
     parser.add_argument("--proj", type=str, default="random") # "random" or "svd"
     parser.add_argument("--scale_type", type=str, default="tensor") # "tensor" or "channel"
     parser.add_argument("--apollo_scale", type=float, default=1.0) # scale for gradient scaling factor
+    parser.add_argument("--scale_front", action='store_true') # put the nl before or after scale the gradient with the apollo_scale
 
     args = parser.parse_args(args)
     args = check_args_torchrun_main(args)

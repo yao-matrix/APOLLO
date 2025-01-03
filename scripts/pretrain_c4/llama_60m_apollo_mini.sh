@@ -16,6 +16,7 @@ torchrun --standalone --nproc_per_node 1 main_pretrain.py \
     --warmup_steps 1000 \
     --num_training_steps 10000 \
     --optimizer apollo_adamw \
+    --scale_front \
     --apollo_scale ${apollo_scale} \
     --rank ${num_rank} \
     --scale_type ${scale_type} \

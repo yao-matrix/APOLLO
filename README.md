@@ -110,10 +110,21 @@ For APOLLO and APOLLO-Mini, we have the following arguments
   - **`channel`**: Applies gradient scaling at the channel level (APOLLO)
   - **`tensor`**: Applies gradient scaling at the tensor level (APOLLO-Mini).
 
-#### `scale`
-- Governs the scaling factor for gradient updates. Can be tuned for better performance.
-    - `1` for APOLLO by default (validated on A100).
-    - `128` for APOLLO-Mini by default. You can scale it larger, especially when the model is large.
+#### **`scale`**
+The `scale` parameter plays a crucial role in heuristically adjusting gradient updates to compensate for scaling factor approximation errors arising from the use of a lower rank. Proper tuning of this parameter can significantly improve performance:
+- **`1`**: Default value for APOLLO (validated on A100 GPUs).
+- **`128`**: Default value for APOLLO-Mini. For larger models, experimenting with higher values is recommended.
+
+#### `--scale_front`
+
+To stabilize training, we adopt the **Norm-Growth Limiter (NL)** from [Fira](https://github.com/xichen-fy/Fira), which has shown to be slightly more effective than traditional gradient clipping.
+
+There are two ways to apply the Norm-Growth Limiter based on when it's used relative to the heuristical (`scale`):
+1. **After Scaling**: NL is applied after the gradient is multiplied by the `scale`.
+   - Recommended for smaller models or when training involves fewer warmup steps.
+   - Enable this by setting `--scale_front`.
+2. **Before Scaling**: NL is applied before the gradient is scaled.
+   - With sufficient warmup steps, both methods yield similar performance for large models.
 
 ---
 

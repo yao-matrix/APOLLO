@@ -1,5 +1,5 @@
 # LLaMA-130M, APOLLO, 4 A100, 1 Node
-num_rank=256
+num_rank=192 # use exact 1/4 of llama 130M model dimension
 scale_type=channel
 proj_type=random
 apollo_scale=1 # A6000 uses a smaller one to avoid loss spikes
@@ -14,6 +14,7 @@ torchrun --standalone --nproc_per_node 4 main_pretrain.py \
     --warmup_steps 2000 \
     --num_training_steps 20000 \
     --optimizer apollo_adamw \
+    --scale_front \
     --apollo_scale ${apollo_scale} \
     --rank ${num_rank} \
     --scale_type ${scale_type} \

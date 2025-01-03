@@ -289,7 +289,7 @@ def main(args):
     total_svd_count = 0
 
     for batch_idx, batch in enumerate(dataloader):
-        if update_step != 0 and batch_idx <= args.gradient_accumulation * update_step:
+        if update_step != 0 and batch_idx < args.gradient_accumulation * update_step:
             continue  # skipping learned data when resuming from checkpointing
 
         global_step += 1
