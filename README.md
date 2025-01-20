@@ -10,7 +10,7 @@ A memory-efficient optimizer designed for **large language model (LLM) pre-train
 ![hippo](https://raw.githubusercontent.com/zhuhanqing/APOLLO/main/docs/static/videos/apollo_demo.gif)
 
 ## 🔥 News
-- [2024/12] We are working on integrating APOLLO into [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory).
+- [2025/1] APOLLO is integrated into [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory). Try it for memory-efficient LLM full-parameter fine-tuning.
 
 - [2024/12] We are happy to release **the official implementation of APOLLO v1.0.0** in PyPI (see [here](https://pypi.org/project/apollo-torch/)). We support QAPOLLO using int8 weight quantization from Q-Galore.
 - [2024/12] **APOLLO validated by third-party Julia implementation!**: Our APOLLO optimizer has been independently validated by a third party using a Julia implementation. Check out the [post](https://bsky.app/profile/benjmurrell.bsky.social/post/3lcyfrf5b7k2u). They are also working to integrate APOLLO into [FluxML](https://github.com/FluxML/Optimisers.jl/pull/196).
@@ -157,8 +157,32 @@ Both **APOLLO** and **APOLLO-Mini** demonstrate superior performance compared to
 
 The command of training LLaMA-7B model on single GPU as provided within `scripts/single_gpu`. With 1 batch size, the following scripts can pre-train a LLaMA-7B model within 11GB memory (tested on a single A100 GPU)
 
----
+### Benchmark 4: Memory-efficient full-parameter LLM finetuning
 
+Now we support APOLLO in [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory). We have added a test in the `examples/extras/apollo` directory. 
+
+We conducted a comparative evaluation with **GaLore** by fine-tuning models and testing on the **MMLU task**.
+
+#### GaLore Performance using `examples/extras/galore`
+```
+Average: 64.96
+           STEM: 55.43
+Social Sciences: 75.66
+     Humanities: 59.72
+          Other: 71.25
+```
+
+
+#### APOLLO Performance (Scaling Factor = 32) using `examples/extras/apollo`
+With a scaling factor derived from the ratio of LLaMA-8B dimension (4096) to rank (128):
+```
+Average: 65.03
+           STEM: 55.47
+Social Sciences: 76.15
+     Humanities: 59.60
+          Other: 71.28
+```
+---
 
 
 ## 📚 Abstract
