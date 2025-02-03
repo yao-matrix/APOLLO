@@ -51,7 +51,7 @@ class AdamW(Optimizer):
         correct_bias: bool = True,
         scale_front: bool = False,
         disable_nl: bool = False,
-        no_deprecation_warning: bool = False,
+        no_deprecation_warning: bool = True,
     ):
         if not no_deprecation_warning:
             warnings.warn(

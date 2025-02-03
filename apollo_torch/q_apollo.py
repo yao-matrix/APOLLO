@@ -58,9 +58,9 @@ class AdamW(Optimizer2State):
         block_wise=True,
         is_paged=False,
         scale_front: bool = False,
-        no_deprecation_warning: bool = False,
+        no_deprecation_warning: bool = True,
     ):
-        if not no_deprecation_warning:
+        if no_deprecation_warning:
             warnings.warn(
                 "This implementation of AdamW is deprecated and will be removed in a future version. Use the PyTorch"
                 " implementation torch.optim.AdamW instead, or set `no_deprecation_warning=True` to disable this"
@@ -289,20 +289,20 @@ class AdamW(Optimizer2State):
         if state["state1"].dtype == torch.float:
             F.optimizer_update_32bit(
                 self.optimizer_name,
-                grad,
-                p,
-                state["state1"],
-                config["betas"][0],
-                config["eps"],
-                step,
-                lr,
-                state["state2"],
-                config["betas"][1],
-                config["weight_decay"],
-                gnorm_scale,
-                state["unorm_vec"] if config["max_unorm"] > 0.0 else None,
+                g=grad,
+                p=p,
+                state1=state["state1"],
+                beta1=config["betas"][0],
+                eps=config["eps"],
+                step=step,
+                lr=lr,
+                state2=state["state2"],
+                beta2=config["betas"][1],
+                gnorm_scale=gnorm_scale,
+                unorm_vec=state["unorm_vec"] if config["max_unorm"] > 0.0 else None,
                 max_unorm=config["max_unorm"],
                 skip_zeros=config["skip_zeros"],
+                weight_decay=0.0,
             )
 
         elif state["state1"].dtype == torch.uint8 and not config["block_wise"]:

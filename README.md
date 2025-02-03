@@ -10,6 +10,10 @@ A memory-efficient optimizer designed for **large language model (LLM) pre-train
 ![hippo](https://raw.githubusercontent.com/zhuhanqing/APOLLO/main/docs/static/videos/apollo_demo.gif)
 
 ## 🔥 News
+- [2025/2] We are working on integrating APOLLO with the support of Hugging Face Transformers.
+
+- [2025/2] Fix the compatibility issue of quantized APOLLO with bitsandbytes.
+
 - [2025/1] APOLLO is integrated into [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory). Try it for memory-efficient LLM full-parameter fine-tuning.
 
 - [2024/12] We are happy to release **the official implementation of APOLLO v1.0.0** in PyPI (see [here](https://pypi.org/project/apollo-torch/)). We support QAPOLLO using int8 weight quantization from Q-Galore.
