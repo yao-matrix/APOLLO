@@ -129,6 +129,7 @@ class AdamW(Optimizer):
 
                 # APOLLO Step 1: Calculate gradient into low rank space.
                 if "rank" in group:
+                    norm_dim = 0 if grad.shape[0] < grad.shape[1] else 1 # low-rank dimension
                     if "projector" not in state:
                         state["projector"] = self._initialize_projector(group, state)
                     grad = state["projector"].project(grad, state["step"])
@@ -164,7 +165,6 @@ class AdamW(Optimizer):
                 # APOLLO Step 3: Obtain approximated gradient scaling factor, channel-wise or tensor-wise.
                 if "rank" in group:
                     if group['scale_type'] == 'channel':
-                        norm_dim = 0 if norm_grad.shape[0] < norm_grad.shape[1] else 1
                         grad_scaling_factor = (
                             torch.norm(norm_grad, dim=norm_dim) /
                             (torch.norm(grad, dim=norm_dim) + 1e-8)
