@@ -4,13 +4,13 @@ A memory-efficient optimizer designed for **large language model (LLM) pre-train
 
 <p align="center">
   🔗 
-  <a href="https://arxiv.org/abs/2412.05270">Paper</a> • <a href="https://zhuhanqing.github.io/APOLLO/">Project Page</a> • <a href="https://www.youtube.com/playlist?list=PLE0M__TDnJIhvUYG1KRCfzC6gDjt0LV6T">Video</a> • <a href="https://github.com/hiyouga/LLaMA-Factory/pull/6617">LLaMA-Factory</a> • <a href="https://github.com/FluxML/Optimisers.jl/pull/196">FluxML</a> • <a href="https://news.ycombinator.com/item?id=42473469">Hacker News</a>
+  <a href="https://arxiv.org/abs/2412.05270">Paper</a> • <a href="https://zhuhanqing.github.io/APOLLO/">Project Page</a> • <a href="https://www.youtube.com/playlist?list=PLE0M__TDnJIhvUYG1KRCfzC6gDjt0LV6T">Video</a>  • <a href="https://github.com/huggingface/transformers/pull/36062">Hugging Face Transformers</a>  • <a href="https://github.com/hiyouga/LLaMA-Factory/pull/6617">LLaMA-Factory</a> • <a href="https://github.com/FluxML/Optimisers.jl/pull/196">FluxML</a> • <a href="https://news.ycombinator.com/item?id=42473469">Hacker News</a>
 </p>
 
 ![hippo](https://raw.githubusercontent.com/zhuhanqing/APOLLO/main/docs/static/videos/apollo_demo.gif)
 
 ## 🔥 News
-- [2025/2] We are working on integrating APOLLO with the support of Hugging Face Transformers.
+- [2025/2] APOLLO is integrated into Hugging Face Transformers [pr](https://github.com/huggingface/transformers/pull/36062). Try APOLLO with Hugging Face trainer!
 
 - [2025/2] Fix the compatibility issue of quantized APOLLO with bitsandbytes.
 
