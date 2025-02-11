@@ -1,4 +1,4 @@
-# 🚀 APOLLO: SGD-like Memory, AdamW-level Performance
+# 🚀 APOLLO: SGD-like Memory, AdamW-level Performance, MLSys'2025
 
 A memory-efficient optimizer designed for **large language model (LLM) pre-training** and **full-parameter fine-tuning**, offering **SGD-like memory cost** with **AdamW-level performance**.
 
@@ -10,7 +10,10 @@ A memory-efficient optimizer designed for **large language model (LLM) pre-train
 ![hippo](https://raw.githubusercontent.com/zhuhanqing/APOLLO/main/docs/static/videos/apollo_demo.gif)
 
 ## 🔥 News
-- [2025/2] APOLLO is integrated into Hugging Face Transformers [pr](https://github.com/huggingface/transformers/pull/36062). Try APOLLO with Hugging Face trainer!
+
+- [2025/2] APOLLO is accepted to [MLSys 2025](https://mlsys.org/), cheers!
+
+- [2025/2] APOLLO is integrated into [Hugging Face Transformers](https://github.com/huggingface/transformers/pull/36062). Try APOLLO with Hugging Face trainer!
 
 - [2025/2] Fix the compatibility issue of quantized APOLLO with bitsandbytes.
 

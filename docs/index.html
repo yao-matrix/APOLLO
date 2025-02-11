@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
-  <meta name="description"
-        content="APOLLO: SGD-like Memory, AdamW-level Performance.">
+  <meta name="description" content="APOLLO: SGD-like Memory, AdamW-level Performance.">
   <meta name="keywords" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>APOLLO: SGD-like Memory, AdamW-level Performance</title>
@@ -11,22 +11,20 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QMKVK74NE2"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
     gtag('config', 'G-QMKVK74NE2');
   </script>
   <!-- End Google Analytics -->
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="icon" href="./static/images/favicon.svg">
 
@@ -36,164 +34,208 @@
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
 </head>
+
 <body>
 
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://zhuhanqing.github.io/">
-      <span class="icon">
-          <i class="fas fa-home"></i>
-      </span>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
       </a>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More Research
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+        <a class="navbar-item" href="https://zhuhanqing.github.io/">
+          <span class="icon">
+            <i class="fas fa-home"></i>
+          </span>
         </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://github.com/VITA-Group/Q-GaLore">
-            Q-Galore
+
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            More Research
           </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/VITA-Group/Q-GaLore">
+              Q-Galore
+            </a>
+          </div>
         </div>
       </div>
+
     </div>
+  </nav>
 
-  </div>
-</nav>
-
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">APOLLO: SGD-like Memory, AdamW-level Performance</h1>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a href="https://zhuhanqing.github.io/">Hanqing Zhu</a><sup>1, *</sup>,</span>
-            <span class="author-block">
-              <a href="https://zhenyu.gallery/">Zhenyu Zhang</a><sup>1, *</sup>,</span>
-            <span class="author-block">
-              <a href="https://wenyancong.com/">Wenyan Cong</a><sup>1</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://www.linkedin.com/in/xi-liu-2b0285173/">Xi Liu</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://scholar.google.com/citations?user=oBbrl-4AAAAJ&hl=en">Sem Park</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://v-chandra.github.io//">Vikas Chandra</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://www.linkedin.com/in/bolonglinkedin/">Bo Long</a><sup>2</sup>
-            </span>
-            <span class="author-block">
-              <a href="https://users.ece.utexas.edu/~dpan/">David Z. Pan</a><sup>1,†</sup>
-            </span>
-            <span class="author-block">
-              <a href="https://vita-group.github.io/group.html">Zhangyang Wang</a><sup>1,†</sup>
-            </span>
-            <span class="author-block">
-              <a href="https://scholar.google.com/citations?user=lUYLvBgAAAAJ&hl=en">Jinwon Lee</a><sup>2,†</sup>
-            </span>
-          </div>
-
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>The University of Texas at Austin,</span>
-            <span class="author-block"><sup>2</sup>Meta AI</span>
-            <span class="author-block"><sup>*</sup>Equal contribution </span>
-            <span class="author-block"><sup>†</sup>Equal advising</span>
-          </div>
-
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
           <div class="column has-text-centered">
-            <div class="publication-links">
+            <h1 class="title is-1 publication-title">APOLLO: SGD-like Memory, AdamW-level Performance</h1>
+            <p class="is-size-4 has-text-weight-bold">📢 Accepted at MLSys 2025</p>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://zhuhanqing.github.io/">Hanqing Zhu</a><sup>1, *</sup>,</span>
+              <span class="author-block">
+                <a href="https://zhenyu.gallery/">Zhenyu Zhang</a><sup>1, *</sup>,</span>
+              <span class="author-block">
+                <a href="https://wenyancong.com/">Wenyan Cong</a><sup>1</sup>,
               </span>
-              <span class="link-block">
-                <a href="https://arxiv.org/abs/2412.05270"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
+              <span class="author-block">
+                <a href="https://www.linkedin.com/in/xi-liu-2b0285173/">Xi Liu</a><sup>2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=oBbrl-4AAAAJ&hl=en">Sem Park</a><sup>2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://v-chandra.github.io//">Vikas Chandra</a><sup>2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://www.linkedin.com/in/bolonglinkedin/">Bo Long</a><sup>2</sup>
+              </span>
+              <span class="author-block">
+                <a href="https://users.ece.utexas.edu/~dpan/">David Z. Pan</a><sup>1,†</sup>
+              </span>
+              <span class="author-block">
+                <a href="https://vita-group.github.io/group.html">Zhangyang Wang</a><sup>1,†</sup>
+              </span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=lUYLvBgAAAAJ&hl=en">Jinwon Lee</a><sup>2,†</sup>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>The University of Texas at Austin,</span>
+              <span class="author-block"><sup>2</sup>Meta AI</span>
+              <span class="author-block"><sup>*</sup>Equal contribution </span>
+              <span class="author-block"><sup>†</sup>Equal advising</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                </span>
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2412.05270" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
                       <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
-              <!-- Video Link. -->
-              <span class="link-block">
-                <a href="https://youtube.com/playlist?list=PLE0M__TDnJIhvUYG1KRCfzC6gDjt0LV6T&si=i-wWhNqeCfLevKff"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-youtube"></i>
-                  </span>
-                  <span>Video</span>
-                </a>
-              </span>
-              <!-- Code Link. -->
-              <span class="link-block">
-                <a href="https://github.com/zhuhanqing/APOLLO"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code</span>
+                    </span>
+                    <span>arXiv</span>
                   </a>
-              </span>
-              <!-- Email Link -->
-              <span class="link-block">
-                <a href="mailto:hqzhu@utexas.edu"
-                  class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="fas fa-envelope"></i>
-                  </span>
-                  <span>Email</span>
-                </a>
-              </span>
+                </span>
+                <!-- Video Link. -->
+                <span class="link-block">
+                  <a href="https://youtube.com/playlist?list=PLE0M__TDnJIhvUYG1KRCfzC6gDjt0LV6T&si=i-wWhNqeCfLevKff"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                    </span>
+                    <span>Video</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/zhuhanqing/APOLLO"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <!-- Email Link -->
+                <span class="link-block">
+                  <a href="mailto:hqzhu@utexas.edu" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-envelope"></i>
+                    </span>
+                    <span>Email</span>
+                  </a>
+                </span>
+              </div>
+              <div>
+                <!-- Hugging Face Transformers -->
+                <span class="link-block">
+                  <a href="https://github.com/huggingface/transformers/pull/36062"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Hugging Face Transformers</span>
+                  </a>
+                </span>
+                <!-- LLaMA-Factory -->
+                <span class="link-block">
+                  <a href="https://github.com/hiyouga/LLaMA-Factory/pull/6617"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>LLaMA-Factory</span>
+                  </a>
+                </span>
+                <!-- FluxML -->
+                <span class="link-block">
+                  <a href="https://github.com/FluxML/Optimisers.jl/pull/196"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>FluxML</span>
+                  </a>
+                </span>
+                <!-- Hacker News -->
+                <span class="link-block">
+                  <a href="https://news.ycombinator.com/item?id=42473469"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-newspaper"></i>
+                    </span>
+                    <span>Hacker News</span>
+                  </a>
+                </span>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<script>
-  // Ensure the DOM elements are loaded before accessing them
-  window.addEventListener("DOMContentLoaded", () => {
-    const video = document.getElementById("training-video");
-    const playButton = document.getElementById("play-button");
+  <script>
+    // Ensure the DOM elements are loaded before accessing them
+    window.addEventListener("DOMContentLoaded", () => {
+      const video = document.getElementById("training-video");
+      const playButton = document.getElementById("play-button");
 
-    // Add event listener for the play button
-    playButton.addEventListener("click", () => {
-      video.play();
+      // Add event listener for the play button
+      playButton.addEventListener("click", () => {
+        video.play();
+      });
+
+      // Freeze the video at the last frame after it ends
+      video.addEventListener("ended", () => {
+        video.pause();
+        video.currentTime = video.duration; // Freeze at the last frame
+      });
     });
+  </script>
 
-    // Freeze the video at the last frame after it ends
-    video.addEventListener("ended", () => {
-      video.pause();
-      video.currentTime = video.duration; // Freeze at the last frame
-    });
-  });
-</script>
-
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <!-- Use a flexbox container for alignment -->
-    <div class="hero-body" style="display: flex; align-items: center; justify-content: center; gap: 40px;">
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <!-- Use a flexbox container for alignment -->
+      <div class="hero-body" style="display: flex; align-items: center; justify-content: center; gap: 40px;">
         <!-- Embed video -->
         <div style="flex: 1; max-width: 50%;">
           <div style="display: flex; flex-direction: column; align-items: center;">
-            <video id="training-video" class="interpolation-video" muted playsinline style="width: 100%; max-width: 500px;">
+            <video id="training-video" class="interpolation-video" muted playsinline
+              style="width: 100%; max-width: 500px;">
               <source src="./static/videos/7b_training_curves_all.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
-            <button id="play-button" style="margin-top: 10px; padding: 8px 16px; border: none; border-radius: 5px; background-color: #007BFF; color: white; font-size: 14px; cursor: pointer;">
+            <button id="play-button"
+              style="margin-top: 10px; padding: 8px 16px; border: none; border-radius: 5px; background-color: #007BFF; color: white; font-size: 14px; cursor: pointer;">
               Play Video
             </button>
           </div>
@@ -202,7 +244,8 @@
         <!-- Add table -->
         <div style="flex: 1; max-width: 40%; min-width: 300px;">
           <!-- Table Title -->
-          <h3 style="text-align: center; margin-bottom: 10px;">Pre-training LLaMA 7B on C4 dataset for 150K steps with reported perplexity</h3>
+          <h3 style="text-align: center; margin-bottom: 10px;">Pre-training LLaMA 7B on C4 dataset for 150K steps with
+            reported perplexity</h3>
 
           <table style="width: 100%; border-collapse: collapse; text-align: center; font-size: 14px;">
             <thead>
@@ -259,232 +302,269 @@
             </tbody>
           </table>
         </div>
+      </div>
+
+      <!-- Subtitle below both -->
+      <h2 class="subtitle has-text-centered" style="margin-top: 20px;">
+        <span class="dnerf">APOLLO</span> optimizer significantly reduces memory usage and achieves the best perplexity
+        in pre-training.
+      </h2>
     </div>
-
-    <!-- Subtitle below both -->
-    <h2 class="subtitle has-text-centered" style="margin-top: 20px;">
-        <span class="dnerf">APOLLO</span> optimizer significantly reduces memory usage and achieves the best perplexity in pre-training.
-    </h2>
-  </div>
-</section>
+  </section>
 
 
 
-<style>
-  .texttt {
-    font-family: "Courier New", Courier, monospace;
-    font-weight: bold;
-  }
-</style>
+  <style>
+    .texttt {
+      font-family: "Courier New", Courier, monospace;
+      font-weight: bold;
+    }
+  </style>
 
-<!-- News Section -->
-<section class="section" id="news">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3">🔥 News</h2>
-    <div class="content">
-      <ul>
-        <li>
-          <strong>[2025/1]</strong> <strong>Try APOLLO for memory-efficient LLM full-parameter fine-tuning!</strong> 
-          Our APOLLO optimizer is integrated into <a href="https://github.com/hiyouga/LLaMA-Factory" target="_blank">LLaMA-Factory</a>!
-        </li>
-        <li>
-          <strong>[2024/12]</strong> <strong>Try APOLLO—just install via pip!</strong> 
-          Our APOLLO optimizer is now live and can be easily installed using pip.
-          Check it out on <a href="https://pypi.org/project/apollo-torch/" target="_blank">PyPI</a>!
-        </li>
-        <li>
-          <strong>[2024/12]</strong> <strong>APOLLO validated by third-party Julia implementation!</strong> 
-          Our APOLLO optimizer has been independently validated by a third party using a Julia implementation. 
-          Check out the <a href="https://bsky.app/profile/benjmurrell.bsky.social/post/3lcyfrf5b7k2u" target="_blank">post</a>. 
-          They are also working to integrate APOLLO into 
-          <a href="https://github.com/FluxML/Optimisers.jl/pull/196" target="_blank">FluxML</a>.
-        </li>
-        <li>
-          <strong>[2024/12]</strong> <strong>Unofficial Implementation Available!</strong> 
-          For a quick try-out, please check out the 
-          <a href="https://github.com/MadsToftrup/Apollo-dev" target="_blank">Unofficial Implementation</a> 
-          implemented by third-party contributors, validated by us!
-        </li>
-        <li>
-          <strong>[2024/12]</strong> <a href="https://arxiv.org/abs/2412.05270" target="_blank"><strong>Paper</strong></a> 
-          is now on arXiv!
-        </li>
-      </ul>
+  <!-- News Section -->
+  <section class="section" id="news">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">🔥 News</h2>
+      <div class="content">
+        <ul>
+          <li>
+            <strong>[2025/1]</strong> <strong>Try APOLLO for memory-efficient LLM full-parameter fine-tuning!</strong>
+            Our APOLLO optimizer is integrated into <a href="https://github.com/hiyouga/LLaMA-Factory"
+              target="_blank">LLaMA-Factory</a>!
+          </li>
+          <li>
+            <strong>[2024/12]</strong> <strong>Try APOLLO—just install via pip!</strong>
+            Our APOLLO optimizer is now live and can be easily installed using pip.
+            Check it out on <a href="https://pypi.org/project/apollo-torch/" target="_blank">PyPI</a>!
+          </li>
+          <li>
+            <strong>[2024/12]</strong> <strong>APOLLO validated by third-party Julia implementation!</strong>
+            Our APOLLO optimizer has been independently validated by a third party using a Julia implementation.
+            Check out the <a href="https://bsky.app/profile/benjmurrell.bsky.social/post/3lcyfrf5b7k2u"
+              target="_blank">post</a>.
+            They are also working to integrate APOLLO into
+            <a href="https://github.com/FluxML/Optimisers.jl/pull/196" target="_blank">FluxML</a>.
+          </li>
+          <li>
+            <strong>[2024/12]</strong> <strong>Unofficial Implementation Available!</strong>
+            For a quick try-out, please check out the
+            <a href="https://github.com/MadsToftrup/Apollo-dev" target="_blank">Unofficial Implementation</a>
+            implemented by third-party contributors, validated by us!
+          </li>
+          <li>
+            <strong>[2024/12]</strong> <a href="https://arxiv.org/abs/2412.05270"
+              target="_blank"><strong>Paper</strong></a>
+            is now on arXiv!
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
 
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-          Large language models (LLMs) demonstrate remarkable capabilities but are notoriously memory-intensive during training, particularly with the popular AdamW optimizer. This memory burden often necessitates using more or higher-end GPUs or reducing batch sizes, limiting training scalability and throughput, respectively. To address this, various memory-efficient optimizers have been proposed to reduce optimizer memory usage. However, they face key challenges: (i) reliance on costly SVD operations (e.g., GaLore, Fira); (ii) significant performance trade-offs compared to AdamW (e.g., Flora); and (iii) still substantial memory overhead of optimization states in order to maintain competitive performance (e.g., 1/4 rank in GaLore, and full-rank first momentum in Adam-mini).
-          </p>
-          <p>
-          In this work, we investigate the redundancy in Adam(W)'s learning rate adaption rule and identify that it can be coarsened as a structured learning rate update (channel-wise or tensor-wise).
-          Based on this insight, we propose a novel approach, <span class="has-text-weight-bold has-underline">Ap</span>proximated Gradient Scaling for Mem<span class="has-text-weight-bold has-underline">o</span>ry Efficient <span class="has-text-weight-bold has-underline">LL</span>M <span class="has-text-weight-bold has-underline">O</span>ptimization (<span class="texttt">APOLLO</span>), which approximates the channel-wise learning rate scaling with an auxiliary low-rank optimizer state based on pure <em>random projection</em>.
-          The structured learning rate update rule makes <span class="texttt">APOLLO</span> highly tolerant to further memory reduction with lower rank, halving the rank while delivering similar pre-training performance.
-          We further propose an extreme memory-efficient version, <span class="texttt">APOLLO-Mini</span>, which utilizes tensor-wise scaling with only a rank-1 auxiliary sub-space, achieving <strong>SGD-level memory cost</strong> but superior pre-training performance than Adam(W).
-          </p>
-          <p>
-            We conduct extensive experiments across different tasks and model architectures, showing that the <span class="texttt">APOLLO</span> series performs <strong>generally on-par with, or even better than Adam(W)</strong>. Meanwhile, <span class="texttt">APOLLO</span> achieves <strong>even greater memory savings than GaLore</strong>, by almost eliminating the optimization states in AdamW.
-            These savings translate into significant system benefits:
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Large language models (LLMs) demonstrate remarkable capabilities but are notoriously memory-intensive
+              during training, particularly with the popular AdamW optimizer. This memory burden often necessitates
+              using more or higher-end GPUs or reducing batch sizes, limiting training scalability and throughput,
+              respectively. To address this, various memory-efficient optimizers have been proposed to reduce optimizer
+              memory usage. However, they face key challenges: (i) reliance on costly SVD operations (e.g., GaLore,
+              Fira); (ii) significant performance trade-offs compared to AdamW (e.g., Flora); and (iii) still
+              substantial memory overhead of optimization states in order to maintain competitive performance (e.g., 1/4
+              rank in GaLore, and full-rank first momentum in Adam-mini).
+            </p>
+            <p>
+              In this work, we investigate the redundancy in Adam(W)'s learning rate adaption rule and identify that it
+              can be coarsened as a structured learning rate update (channel-wise or tensor-wise).
+              Based on this insight, we propose a novel approach, <span
+                class="has-text-weight-bold has-underline">Ap</span>proximated Gradient Scaling for Mem<span
+                class="has-text-weight-bold has-underline">o</span>ry Efficient <span
+                class="has-text-weight-bold has-underline">LL</span>M <span
+                class="has-text-weight-bold has-underline">O</span>ptimization (<span class="texttt">APOLLO</span>),
+              which approximates the channel-wise learning rate scaling with an auxiliary low-rank optimizer state based
+              on pure <em>random projection</em>.
+              The structured learning rate update rule makes <span class="texttt">APOLLO</span> highly tolerant to
+              further memory reduction with lower rank, halving the rank while delivering similar pre-training
+              performance.
+              We further propose an extreme memory-efficient version, <span class="texttt">APOLLO-Mini</span>, which
+              utilizes tensor-wise scaling with only a rank-1 auxiliary sub-space, achieving <strong>SGD-level memory
+                cost</strong> but superior pre-training performance than Adam(W).
+            </p>
+            <p>
+              We conduct extensive experiments across different tasks and model architectures, showing that the <span
+                class="texttt">APOLLO</span> series performs <strong>generally on-par with, or even better than
+                Adam(W)</strong>. Meanwhile, <span class="texttt">APOLLO</span> achieves <strong>even greater memory
+                savings than GaLore</strong>, by almost eliminating the optimization states in AdamW.
+              These savings translate into significant system benefits:
             <ol>
-              <li><strong>Enhanced Throughput:</strong> <span class="texttt">APOLLO</span> and <span class="texttt">APOLLO-Mini</span> achieve up to 3× throughput on a 8×A100-80GB setup compared to Adam by fully utilizing memory to support 4× larger batch sizes.</li>
-              <li><strong>Improved Model Scalability:</strong> <span class="texttt">APOLLO-Mini</span> <em>for the first time</em>  enables pre-training LLaMA-13B model with naive DDP on A100-80G without requiring other system-level optimizations.</li>
-              <li><strong>Low-End GPU Pre-training:</strong> Combined with quantization, the <span class="texttt">APOLLO</span> series <em>for the first time</em> enables the training of LLaMA-7B from scratch using less than 12 GB of memory.</li>
+              <li><strong>Enhanced Throughput:</strong> <span class="texttt">APOLLO</span> and <span
+                  class="texttt">APOLLO-Mini</span> achieve up to 3× throughput on a 8×A100-80GB setup compared to Adam
+                by fully utilizing memory to support 4× larger batch sizes.</li>
+              <li><strong>Improved Model Scalability:</strong> <span class="texttt">APOLLO-Mini</span> <em>for the first
+                  time</em> enables pre-training LLaMA-13B model with naive DDP on A100-80G without requiring other
+                system-level optimizations.</li>
+              <li><strong>Low-End GPU Pre-training:</strong> Combined with quantization, the <span
+                  class="texttt">APOLLO</span> series <em>for the first time</em> enables the training of LLaMA-7B from
+                scratch using less than 12 GB of memory.</li>
             </ol>
-          </p>
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Method Highlights -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Method Highlights</h2>
-        <div class="content has-text-justified">
-          <p>
-            The <span class="texttt">APOLLO</span> series introduces several innovative approaches for memory-efficient LLM training. Here are the key highlights of our method:
-          </p>
-          <ul style="text-align: left;">
-            <li>
-              <strong>Structured Learning Rate Updates:</strong>  
-              We identify the redundancy in Adam(W)'s element-wise learning rate update rule and find a structured learning rate update rule is sufficient for LLM training.
-            </li>
-            <li>
-              <strong>Low-Rank Auxiliary State (APOLLO):</strong>  
-              A practical, memory-efficient approximation of channel-wise gradient scaling using pure random projections in a low-rank auxiliary space. This method achieves superior performance to AdamW with significantly lower memory requirements.
-            </li>
-            <li>
-              <strong>Extreme Memory Efficiency (APOLLO-Mini):</strong>  
-              Tensor-wise gradient scaling using only a rank-1 auxiliary sub-space, achieving SGD-level memory costs while still on-par or even outperforming Adam(W) in pre-training tasks.
-            </li>
-          </ul>
-          <p>
-            These innovations make <span class="texttt">APOLLO</span> and <span class="texttt">APOLLO-Mini</span> ideal for memory-constrained environments, delivering both scalability and performance without compromise.
-          </p>
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Method Highlights -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Method Highlights</h2>
+          <div class="content has-text-justified">
+            <p>
+              The <span class="texttt">APOLLO</span> series introduces several innovative approaches for
+              memory-efficient LLM training. Here are the key highlights of our method:
+            </p>
+            <ul style="text-align: left;">
+              <li>
+                <strong>Structured Learning Rate Updates:</strong>
+                We identify the redundancy in Adam(W)'s element-wise learning rate update rule and find a structured
+                learning rate update rule is sufficient for LLM training.
+              </li>
+              <li>
+                <strong>Low-Rank Auxiliary State (APOLLO):</strong>
+                A practical, memory-efficient approximation of channel-wise gradient scaling using pure random
+                projections in a low-rank auxiliary space. This method achieves superior performance to AdamW with
+                significantly lower memory requirements.
+              </li>
+              <li>
+                <strong>Extreme Memory Efficiency (APOLLO-Mini):</strong>
+                Tensor-wise gradient scaling using only a rank-1 auxiliary sub-space, achieving SGD-level memory costs
+                while still on-par or even outperforming Adam(W) in pre-training tasks.
+              </li>
+            </ul>
+            <p>
+              These innovations make <span class="texttt">APOLLO</span> and <span class="texttt">APOLLO-Mini</span>
+              ideal for memory-constrained environments, delivering both scalability and performance without compromise.
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- Framework Overview -->
-  <div style="flex: 1; max-width: 50%; margin: auto; text-align: center;">
-    <div style="display: flex; flex-direction: column; align-items: center;">
-      <img src="./static/images/apollo_framework.png" alt="APOLLO Framework" style="width: 100%; max-width: 500px; height: auto;">
-      <p style="margin-top: 10px; font-size: 14px;">
-        <em>Figure 1: The APOLLO Framework for Memory-Efficient LLM Training. The channel-wise or tensor-wise gradient scaling factor is obtained via an auxiliary low-rank optimizer state, constructed using pure random projection (no SVD required).</em>
-      </p>
-    </div>
-  </div>
-
-  <!-- Benefits and Results -->
-  <div style="flex: 1; max-width: 70%; margin: auto; text-align: center;">
-    <div style="display: flex; flex-direction: column; align-items: center;">
-      <img src="./static/images/apollo_7b.jpg" alt="System Benefits of APOLLO" style="width: 100%; max-width: 700px; height: auto;">
-      <p style="margin-top: 10px; font-size: 14px;">
-        <em>Figure 2: System Benefits of APOLLO for Pre-training LLaMA 7B. (Left): Memory breakdown comparison for a single batch size. (Right): End-to-end training throughput on 8 A100-80GB GPUs.</em>
-      </p>
-    </div>
-  </div>
-
-
-</section>
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-
-      <!-- Throughput Video -->
-      <h2 class="title is-3 has-text-centered">Train an LLaMA-7B with 3× Throughput Compared to Adam</h2>
-      <div class="content has-text-justified">
-        <p>
-          The following videos demonstrate the training throughput achieved with <strong>APOLLO</strong> on the LLaMA-7B model, showing up to 3× improvement compared to Adam optimizer.
+    <!-- Framework Overview -->
+    <div style="flex: 1; max-width: 50%; margin: auto; text-align: center;">
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <img src="./static/images/apollo_framework.png" alt="APOLLO Framework"
+          style="width: 100%; max-width: 500px; height: auto;">
+        <p style="margin-top: 10px; font-size: 14px;">
+          <em>Figure 1: The APOLLO Framework for Memory-Efficient LLM Training. The channel-wise or tensor-wise gradient
+            scaling factor is obtained via an auxiliary low-rank optimizer state, constructed using pure random
+            projection (no SVD required).</em>
         </p>
       </div>
-      <div class="columns is-centered is-vcentered">
-        <!-- Adam Video -->
-        <div class="column has-text-centered">
-          <h3 class="title is-5">AdamW Optimizer with micro batch size of 4 at 79GB-80GB memory cost</h3>
-          <iframe width="100%" height="315" 
-                  src="https://www.youtube.com/embed/XuNTX7VDViQ?si=0Kqf3ejnL05B85gL&amp;start=51" 
-                  title="Adam Throughput" 
-                  frameborder="0" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                  referrerpolicy="strict-origin-when-cross-origin" 
-                  allowfullscreen>
-          </iframe>
-        </div>
+    </div>
 
-        <!-- APOLLO Video -->
-        <div class="column has-text-centered">
-          <h3 class="title is-5">APOLLO Optimizer with micro batch size of 16 at 69GB-70GB memory cost</h3>
-          <iframe width="100%" height="315" 
-                  src="https://www.youtube.com/embed/s2WxdBGh99k?si=XDEG6PD0EAJljDaz&amp;start=49"
-                  title="APOLLO Throughput" 
-                  frameborder="0" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                  referrerpolicy="strict-origin-when-cross-origin" 
-                  allowfullscreen>
-          </iframe>
-        </div>
-      </div>
-
-        <!-- LLaMA-13B Training Video -->
-      <h2 class="title is-3 has-text-centered">Successful Training for LLaMA-13B Model</h2>
-      <div class="content has-text-justified">
-        <p>
-          This video showcases <strong>APOLLO-Mini</strong> enables the first successful pre-training of the LLaMA-13B model with naive DDP and no other system-level optimizations.
+    <!-- Benefits and Results -->
+    <div style="flex: 1; max-width: 70%; margin: auto; text-align: center;">
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <img src="./static/images/apollo_7b.jpg" alt="System Benefits of APOLLO"
+          style="width: 100%; max-width: 700px; height: auto;">
+        <p style="margin-top: 10px; font-size: 14px;">
+          <em>Figure 2: System Benefits of APOLLO for Pre-training LLaMA 7B. (Left): Memory breakdown comparison for a
+            single batch size. (Right): End-to-end training throughput on 8 A100-80GB GPUs.</em>
         </p>
       </div>
-      <div class="content has-text-centered">
-        <!-- Embed YouTube Video -->
-        <iframe width="560" height="315" 
-                src="https://www.youtube.com/embed/6ngI62V_2SA?si=zxQ_gBFoOxYGqJ_G&amp;start=244" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                referrerpolicy="strict-origin-when-cross-origin" 
-                allowfullscreen>
-        </iframe>
-      </div>
+    </div>
 
-        <!-- LLaMA-7B 12GB Training Video -->
-        <h2 class="title is-3 has-text-centered">Pre-train a LLaMA-7B on a NVIDIA TITAN (12GB)</h2>
-        <div class="content has-text-justified">
-          <p>
-            This video showcases the successful training of the LLaMA-7B model using <strong>Q-APOLLO-Mini</strong> within 11 GB memory, when layer-wise update is adopted.
-          </p>
-        </div>
-        <div class="content has-text-centered">
-          <iframe width="560" height="315" 
-              src="https://www.youtube.com/embed/L6Gfiz14EzA?si=i8xGBsKpDyfOONgM&amp;start=136" 
-              title="YouTube video player" 
-              frameborder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-              referrerpolicy="strict-origin-when-cross-origin" 
-              allowfullscreen>
-        </iframe>
+
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+
+          <!-- Throughput Video -->
+          <h2 class="title is-3 has-text-centered">Train an LLaMA-7B with 3× Throughput Compared to Adam</h2>
+          <div class="content has-text-justified">
+            <p>
+              The following videos demonstrate the training throughput achieved with <strong>APOLLO</strong> on the
+              LLaMA-7B model, showing up to 3× improvement compared to Adam optimizer.
+            </p>
+          </div>
+          <div class="columns is-centered is-vcentered">
+            <!-- Adam Video -->
+            <div class="column has-text-centered">
+              <h3 class="title is-5">AdamW Optimizer with micro batch size of 4 at 79GB-80GB memory cost</h3>
+              <iframe width="100%" height="315"
+                src="https://www.youtube.com/embed/XuNTX7VDViQ?si=0Kqf3ejnL05B85gL&amp;start=51" title="Adam Throughput"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+              </iframe>
+            </div>
+
+            <!-- APOLLO Video -->
+            <div class="column has-text-centered">
+              <h3 class="title is-5">APOLLO Optimizer with micro batch size of 16 at 69GB-70GB memory cost</h3>
+              <iframe width="100%" height="315"
+                src="https://www.youtube.com/embed/s2WxdBGh99k?si=XDEG6PD0EAJljDaz&amp;start=49"
+                title="APOLLO Throughput" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+              </iframe>
+            </div>
+          </div>
+
+          <!-- LLaMA-13B Training Video -->
+          <h2 class="title is-3 has-text-centered">Successful Training for LLaMA-13B Model</h2>
+          <div class="content has-text-justified">
+            <p>
+              This video showcases <strong>APOLLO-Mini</strong> enables the first successful pre-training of the
+              LLaMA-13B model with naive DDP and no other system-level optimizations.
+            </p>
+          </div>
+          <div class="content has-text-centered">
+            <!-- Embed YouTube Video -->
+            <iframe width="560" height="315"
+              src="https://www.youtube.com/embed/6ngI62V_2SA?si=zxQ_gBFoOxYGqJ_G&amp;start=244"
+              title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+          </div>
+
+          <!-- LLaMA-7B 12GB Training Video -->
+          <h2 class="title is-3 has-text-centered">Pre-train a LLaMA-7B on a NVIDIA TITAN (12GB)</h2>
+          <div class="content has-text-justified">
+            <p>
+              This video showcases the successful training of the LLaMA-7B model using <strong>Q-APOLLO-Mini</strong>
+              within 11 GB memory, when layer-wise update is adopted.
+            </p>
+          </div>
+          <div class="content has-text-centered">
+            <iframe width="560" height="315"
+              src="https://www.youtube.com/embed/L6Gfiz14EzA?si=i8xGBsKpDyfOONgM&amp;start=136"
+              title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title has-text-centered">BibTeX</h2>
-    <pre style="background: #f7f7f7; padding: 20px; border-radius: 10px; font-size: 14px;">
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title has-text-centered">BibTeX</h2>
+      <pre style="background: #f7f7f7; padding: 20px; border-radius: 10px; font-size: 14px;">
 @misc{zhu2024apollosgdlikememoryadamwlevel,
   title={APOLLO: SGD-like Memory, AdamW-level Performance}, 
   author={Hanqing Zhu and Zhenyu Zhang and Wenyan Cong and Xi Liu and Sem Park and Vikas Chandra and Bo Long and David Z. Pan and Zhangyang Wang and Jinwon Lee},
@@ -495,18 +575,18 @@
   url={https://arxiv.org/abs/2412.05270}
 }
     </pre>
-  </div>
-</section>
+    </div>
+  </section>
 
 
-<script defer src="https://busuanzi.9420.ltd/js"></script>
+  <script defer src="https://busuanzi.9420.ltd/js"></script>
 
-<!-- 本文总阅读量 <span id="busuanzi_page_pv"></span> 次
+  <!-- 本文总阅读量 <span id="busuanzi_page_pv"></span> 次
 本文总访客量 <span id="busuanzi_page_uv"></span> 人
 本站总访问量 <span id="busuanzi_site_pv"></span> 次
 本站总访客数 <span id="busuanzi_site_uv"></span> 人 -->
 
-<footer class="footer">
+  <footer class="footer">
     <div class="columns is-centered">
       <div class="column is-8">
         <div class="content">
@@ -515,20 +595,22 @@
             <span id="busuanzi_page_pv" style="font-size: 1.5rem; font-weight: bold; color: #28A745;">0</span>
           </p>
           <p style="text-align: center; font-style: italic; margin-top: 20px;">
-            We thank the authors of <a href="https://nerfies.github.io/" style="color: #FF5733;">Nerfies</a> 
+            We thank the authors of <a href="https://nerfies.github.io/" style="color: #FF5733;">Nerfies</a>
             for kindly open sourcing the template of this website.
           </p>
         </div>
         <!-- Embed ClustrMaps JavaScript with Controlled Size -->
         <div style="text-align: center; margin-top: 20px;">
           <div style="width: 300px; margin: 0 auto;">
-            <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=MCSnfII47kqPMR1bVMYuSz8PFG4el4JB6LAaadv0ikg&cl=ffffff&w=a"></script>
+            <script type="text/javascript" id="clustrmaps"
+              src="//clustrmaps.com/map_v2.js?d=MCSnfII47kqPMR1bVMYuSz8PFG4el4JB6LAaadv0ikg&cl=ffffff&w=a"></script>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</footer>
+    </div>
+  </footer>
 
 </body>
+
 </html>
