@@ -22,4 +22,4 @@ torchrun --standalone --nproc_per_node 1 main_pretrain.py \
     --weight_decay 0 \
     --project apollo_test\
     --name apollo_test_apollo_60m \
-    --save_dir ./ckpts/Appollo_60m_scale${apollo_scale}_rank${num_rank}_proj${proj_type}_type${scale_type}
+    --save_dir ./ckpts/Apollo_60m_scale${apollo_scale}_rank${num_rank}_proj${proj_type}_type${scale_type}

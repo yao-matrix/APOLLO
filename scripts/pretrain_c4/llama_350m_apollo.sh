@@ -22,4 +22,4 @@ torchrun --standalone --nproc_per_node 4 main_pretrain.py \
     --update_proj_gap 200 \
     --project apollo_test \
     --name apollo_test_apollo_350m \
-    --save_dir ./ckpts/Appollo_350m_scale${apollo_scale}_rank${num_rank}_proj${proj_type}_type${scale_type}
+    --save_dir ./ckpts/Apollo_350m_scale${apollo_scale}_rank${num_rank}_proj${proj_type}_type${scale_type}
