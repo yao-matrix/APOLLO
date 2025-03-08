@@ -1,4 +1,5 @@
 # 🚀 APOLLO: SGD-like Memory, AdamW-level Performance, MLSys'2025
+APOLLO is archievd at Figshare with DOI: https://doi.org/10.6084/m9.figshare.28558319.v1 for MLSys artifact evaluation.
 
 A memory-efficient optimizer designed for **large language model (LLM) pre-training** and **full-parameter fine-tuning**, offering **SGD-like memory cost** with **AdamW-level performance**.
 
