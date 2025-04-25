@@ -5,13 +5,13 @@ A memory-efficient optimizer designed for **large language model (LLM) pre-train
 
 <p align="center">
   🔗 
-  <a href="https://arxiv.org/abs/2412.05270">Paper</a> • <a href="https://zhuhanqing.github.io/APOLLO/">Project Page</a> • <a href="https://www.youtube.com/playlist?list=PLE0M__TDnJIhvUYG1KRCfzC6gDjt0LV6T">Video</a>  • <a href="https://huggingface.co/docs/transformers/main/en/trainer#apollo">Hugging Face Transformers</a>  • <a href="https://github.com/hiyouga/LLaMA-Factory/pull/6617">LLaMA-Factory</a> • <a href="https://github.com/FluxML/Optimisers.jl/pull/196">FluxML</a> • <a href="https://github.com/axolotl-ai-cloud/axolotl">axolotl</a> • <a href="https://news.ycombinator.com/item?id=42473469">Hacker News</a>
+  <a href="https://arxiv.org/abs/2412.05270">Paper</a> • <a href="https://zhuhanqing.github.io/APOLLO/">Project Page</a> • <a href="https://www.youtube.com/playlist?list=PLE0M__TDnJIhvUYG1KRCfzC6gDjt0LV6T">Video</a>  • <a href="https://huggingface.co/docs/transformers/main/en/optimizers#apollo">Hugging Face Transformers</a>  • <a href="https://github.com/hiyouga/LLaMA-Factory">LLaMA-Factory</a> • <a href="https://github.com/FluxML/Optimisers.jl/pull/196">FluxML</a> • <a href="https://github.com/axolotl-ai-cloud/axolotl">axolotl</a> • <a href="https://news.ycombinator.com/item?id=42473469">Hacker News</a>
 </p>
 
 ![hippo](https://raw.githubusercontent.com/zhuhanqing/APOLLO/main/docs/static/videos/apollo_demo_v2.gif)
 
 ## 🔥 News
-- [2025/4] Try APOLLO with FSDP using [axolotl](https://github.com/axolotl-ai-cloud/axolotl)!
+- [2025/4] Try APOLLO with FSDP using [Hugging Face Transformers](https://huggingface.co/docs/transformers/main/en/trainer#apollo) and [axolotl](https://github.com/axolotl-ai-cloud/axolotl)! Thank you, [axolotl](https://github.com/axolotl-ai-cloud/axolotl), for raising the [issue](https://github.com/huggingface/transformers/pull/37379) to support APOLLO with FSDP.
 
 - [2025/2] APOLLO is accepted to [MLSys 2025](https://mlsys.org/), cheers!
 
@@ -211,7 +211,7 @@ These savings translate into significant system benefits:
 
 ## 💪To-Do List
 
-- [ ] Support APOLLO with FSDP.
+- [x] Support APOLLO with FSDP.
 
 ## 📬 Contact
 
