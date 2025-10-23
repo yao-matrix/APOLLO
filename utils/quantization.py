@@ -156,7 +156,7 @@ if __name__ == '__main__':
     print('Time for FW+BW = {:.2f} s'.format(end-start))
     print('------------------------------------')
 
-    device_0 = f'{device_type}:1'
+    device_1 = f'{device_type}:1'
     int8_linear1 = QScaleLinear(fp16_linear1.weight, None, device=device_1, num_bits=8, group_size=GROUP_SIZE)
     print('after initial weight for int8', '{:.2f} MB'.format(torch_accelerator_module.memory_allocated(device_1)//1024/1024))
     mem_weight_int = torch_accelerator_module.memory_allocated(device_1)//1024/1024
