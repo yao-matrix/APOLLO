@@ -92,8 +92,14 @@ class QScaleLinear(nn.Module):
         factory_kwargs = {'device': device, 'dtype': dtype}
         super().__init__()
 
+        if device is None:
+            device_type = torch.accelerator.current_accelerator().type if hasattr(torch, "accelerator") else "cuda"
+        else:
+            device_type = torch.Device(device).device_type
+        torch_accelerator_module = getattr(torch, device_type)
+
         int8_weight, scales, zeros = _quantize_tensor_int8(weight.data, q_group_size=group_size)
-        torch.cuda.empty_cache()
+        torch_accelerator_module.empty_cache()
 
         self.weight = Parameter(int8_weight, requires_grad=False).to(device) # Only Tensors of floating point and complex dtype can require gradients, using float_gradient to store the gradient
         
@@ -133,31 +139,35 @@ def prepare_model_for_int8_training(model, args, target_module):
 if __name__ == '__main__':
     GROUP_SIZE=256
     print('*** Memory checking for a single linear layer ***')
-    fp16_linear1 = nn.Linear(4096, 4096, bias=False).to('cuda:0').to(torch.bfloat16)
-    print('after initial weight for bfloat16', '{:.2f} MB'.format(torch.cuda.memory_allocated('cuda:0')//1024/1024))
-    mem_weight_float = torch.cuda.memory_allocated('cuda:0')//1024/1024
-    x = torch.randn(1, 256, 4096, dtype=torch.bfloat16, device='cuda:0', requires_grad=True)
-    print('after initial input for bfloat16', '{:.2f} MB'.format(torch.cuda.memory_allocated('cuda:0')//1024/1024))
+    device_type = torch.accelerator.current_accelerator().type if hasattr(torch, "accelerator") else "cuda"
+    torch_accelerator_module = getattr(torch, device_type)
+    device_0 = f'{device_type}:0'
+    fp16_linear1 = nn.Linear(4096, 4096, bias=False).to(device_0).to(torch.bfloat16)
+    print('after initial weight for bfloat16', '{:.2f} MB'.format(torch_accelerator_module.memory_allocated(device_0)//1024/1024))
+    mem_weight_float = torch_accelerator_module.memory_allocated(device_0)//1024/1024
+    x = torch.randn(1, 256, 4096, dtype=torch.bfloat16, device=device_0, requires_grad=True)
+    print('after initial input for bfloat16', '{:.2f} MB'.format(torch_accelerator_module.memory_allocated(device_0)//1024/1024))
     start = time.time()
     output = fp16_linear1(x)
-    print('after forward for bfloat16', '{:.2f} MB'.format(torch.cuda.memory_allocated('cuda:0')//1024/1024))
+    print('after forward for bfloat16', '{:.2f} MB'.format(torch_accelerator_module.memory_allocated(device_0)//1024/1024))
     output.sum().backward()
     end = time.time()
-    print('after backward for bfloat16', '{:.2f} MB'.format(torch.cuda.memory_allocated('cuda:0')//1024/1024))
+    print('after backward for bfloat16', '{:.2f} MB'.format(torch_accelerator_module.memory_allocated(device_0)//1024/1024))
     print('Time for FW+BW = {:.2f} s'.format(end-start))
     print('------------------------------------')
 
-    int8_linear1 = QScaleLinear(fp16_linear1.weight, None, device='cuda:1', num_bits=8, group_size=GROUP_SIZE)
-    print('after initial weight for int8', '{:.2f} MB'.format(torch.cuda.memory_allocated('cuda:1')//1024/1024))
-    mem_weight_int = torch.cuda.memory_allocated('cuda:1')//1024/1024
-    x1 = torch.randn(1, 256, 4096, dtype=torch.bfloat16, device='cuda:1', requires_grad=True)
-    print('after initial input for bfloat16', '{:.2f} MB'.format(torch.cuda.memory_allocated('cuda:1')//1024/1024))
+    device_0 = f'{device_type}:1'
+    int8_linear1 = QScaleLinear(fp16_linear1.weight, None, device=device_1, num_bits=8, group_size=GROUP_SIZE)
+    print('after initial weight for int8', '{:.2f} MB'.format(torch_accelerator_module.memory_allocated(device_1)//1024/1024))
+    mem_weight_int = torch_accelerator_module.memory_allocated(device_1)//1024/1024
+    x1 = torch.randn(1, 256, 4096, dtype=torch.bfloat16, device=device_1, requires_grad=True)
+    print('after initial input for bfloat16', '{:.2f} MB'.format(torch_accelerator_module.memory_allocated(device_1)//1024/1024))
     start = time.time()
     output_int8 = int8_linear1(x1)
-    print('after forward for int8', '{:.2f} MB'.format(torch.cuda.memory_allocated('cuda:1')//1024/1024))
+    print('after forward for int8', '{:.2f} MB'.format(torch_accelerator_module.memory_allocated(device_1)//1024/1024))
     output_int8.sum().backward()
     end = time.time()
-    print('after backward for int8', '{:.2f} MB'.format(torch.cuda.memory_allocated('cuda:1')//1024/1024))
+    print('after backward for int8', '{:.2f} MB'.format(torch_accelerator_module.memory_allocated(device_1)//1024/1024))
     print('Time for FW+BW = {:.2f} s'.format(end-start))
     print('------------------------------------')
 

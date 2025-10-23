@@ -7,12 +7,15 @@ from datetime import datetime
 def parse_args(args):
     parser = argparse.ArgumentParser()
 
+    device_type = torch.accelerator.current_accelerator().type if hasattr(torch, "accelerator") else "cuda"
+    torch_accelerator_module = getattr(torch, device_type)
+    bf16_supported = torch_accelerator_module.is_bf16_supported()
 
     ### Experiment setup ###
     parser.add_argument("--model_config", type=str, required=True)
     parser.add_argument("--eval_every", type=int, default=5_000)
     parser.add_argument("--save_every", type=int, default=10_000)
-    parser.add_argument("--dtype", type=str, default="bfloat16" if torch.cuda.is_bf16_supported() else "float32")
+    parser.add_argument("--dtype", type=str, default="bfloat16" if bf16_supported else "float32")
     parser.add_argument("--seed", type=int, default=0)
 
     parser.add_argument("--resume_step", type=int, default=None) # if None, resume from the latest checkpoint

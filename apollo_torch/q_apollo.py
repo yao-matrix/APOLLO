@@ -128,6 +128,9 @@ class AdamW(Optimizer2State):
             self.to_gpu()  # needed for fairseq pure fp16 training
             self.initialized = True
 
+        device_type = torch.accelerator.current_accelerator().type if hasattr(torch, "accelerator") else "cuda"
+        torch_accelerator_module = getattr(torch, device_type)
+
         # if self.is_paged: self.page_mng.prefetch_all()
         for gindex, group in enumerate(self.param_groups):
             for pindex, p in enumerate(group["params"]):
@@ -193,7 +196,7 @@ class AdamW(Optimizer2State):
 
                 self.prefetch_state(p)
                 self.update_step(group, p, gindex, pindex, flag_use_float_grad=flag_use_float_grad)
-                torch.cuda.synchronize()
+                torch_accelerator_module.synchronize()
 
                 # APOLLO Step 3: Obtain approximated gradient scaling factor, channel-wise or tensor-wise.
                 if "rank" in group:
@@ -254,7 +257,7 @@ class AdamW(Optimizer2State):
         if self.is_paged:
             # all paged operation are asynchronous, we need
             # to sync to make sure all tensors are in the right state
-            torch.cuda.synchronize()
+            torch_accelerator_module.synchronize()
 
         return loss
 

@@ -28,18 +28,25 @@ def main(args):
     ############ Setup random seed ############
     set_seed(args)
 
+    ############ Detect device in the platform ########
+    device_type = torch.accelerator.current_accelerator().type if hasattr(torch, "accelerator") else "cuda"
+    torch_accelerator_module = getattr(torch, device_type)
+
     ############ Setup DDP environment ############
     assert "LOCAL_RANK" in os.environ, "torchrun should set LOCAL_RANK"
     global_rank = int(os.environ["RANK"])
     local_rank = int(os.environ["LOCAL_RANK"])
     world_size = int(os.environ["WORLD_SIZE"])
-    torch.cuda.set_device(local_rank)
+    torch_accelerator_module.set_device(local_rank)
 
-    logger.info(f"Global rank {global_rank}, local rank {local_rank}, device: {torch.cuda.current_device()}")
-    dist.init_process_group(backend="nccl", rank=global_rank, world_size=world_size)
+    logger.info(f"Global rank {global_rank}, local rank {local_rank}, device: {torch_accelerator_module.current_device()}")
+    backend = "nccl"
+    if device_type == "xpu":
+        backend = "xccl"
+    dist.init_process_group(backend=backend, rank=global_rank, world_size=world_size)
 
     logger.info("Process group initialized")
-    device = f"cuda:{local_rank}"
+    device = f"{device_type}:{local_rank}"
 
     if global_rank != 0:
         logger.remove()  # turn off logger
@@ -455,7 +462,7 @@ def main(args):
     import gc
 
     gc.collect()
-    torch.cuda.empty_cache()
+    torch_accelerator_module.empty_cache()
 
     total_loss, evaluated_on_tokens = evaluate_model(model, tokenizer, pad_idx, global_rank, world_size, device, args)
 

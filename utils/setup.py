@@ -31,12 +31,17 @@ def set_seed(args):
     np.random.seed(args.seed)
     random.seed(args.seed)
 
-    # Set seed for all GPUs
-    torch.cuda.manual_seed_all(args.seed)
+    # Set seed for all accelerators
+    device_type = torch.accelerator.current_accelerator().type if hasattr(torch, "accelerator") else "cuda"
+    torch_accelerator_module = getattr(torch, device_type)
+    torch_accelerator_module.manual_seed_all(args.seed)
+
+    torch.use_deterministic_algorithms()
 
     # Ensure deterministic behavior in cuDNN
-    torch.backends.cudnn.deterministic = True
-    torch.backends.cudnn.benchmark = False
+    if torch.cuda.is_available():
+        torch.backends.cudnn.deterministic = True
+        torch.backends.cudnn.benchmark = False
 
 
 def setup_model(args):
