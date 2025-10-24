@@ -26,7 +26,6 @@ def _quantize_tensor(w, q_group_size=-1, n_bit=8):
     assert torch.isnan(scales).sum() == 0
     assert torch.isnan(w).sum() == 0
 
-    print(f"{w.device.type}")
     w = torch.clamp(torch.round(w / scales) + zeros, min_int, max_int)
     w = w.reshape(org_w_shape).to(torch.uint8)
 
