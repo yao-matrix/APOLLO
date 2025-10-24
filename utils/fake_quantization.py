@@ -26,6 +26,7 @@ def _quantize_tensor(w, q_group_size=-1, n_bit=8):
     assert torch.isnan(scales).sum() == 0
     assert torch.isnan(w).sum() == 0
 
+    print(f"{w.device.type}")
     w = torch.clamp(torch.round(w / scales) + zeros, min_int, max_int)
     w = w.reshape(org_w_shape).to(torch.uint8)
 
@@ -39,10 +40,11 @@ class QLinear(nn.Linear):
         super().__init__(in_features, out_features, bias)
         self.in_features = in_features
         self.out_features = out_features
-        self.weight = Parameter(torch.empty((out_features, in_features)))
+
+        self.weight = Parameter(torch.empty((out_features, in_features), **factory_kwargs))
 
         if bias:
-            self.bias = Parameter(torch.empty(out_features))
+            self.bias = Parameter(torch.empty(out_features, **factory_kwargs))
         else:
             self.register_parameter('bias', None)
         self.reset_parameters()
@@ -144,7 +146,7 @@ if __name__ == '__main__':
     print('------------------------------------')
 
     device_2 = f'{device_type}:2'
-    int8_simluate_linear1 = QLinear(4096, 4096, device=device_2, bias=False, num_bits=8, group_size=GROUP_SIZE, weight_data=fp16_linear1.weight.data, bias_data=None).to(torch.bfloat16)
+    int8_simluate_linear1 = QLinear(4096, 4096, device=device_2, dtype=torch.bfloat16, bias=False, num_bits=8, group_size=GROUP_SIZE, weight_data=fp16_linear1.weight.data, bias_data=None)
     
     print('after initial weight for int8', '{:.2f} MB'.format(torch_accelerator_module.memory_allocated(device_2)//1024/1024))
     mem_weight_int = torch_accelerator_module.memory_allocated(device_2)//1024/1024
