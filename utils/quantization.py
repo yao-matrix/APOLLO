@@ -95,7 +95,7 @@ class QScaleLinear(nn.Module):
         if device is None:
             device_type = torch.accelerator.current_accelerator().type if hasattr(torch, "accelerator") else "cuda"
         else:
-            device_type = torch.Device(device).device_type
+            device_type = torch.device(device).type
         torch_accelerator_module = getattr(torch, device_type)
 
         int8_weight, scales, zeros = _quantize_tensor_int8(weight.data, q_group_size=group_size)
