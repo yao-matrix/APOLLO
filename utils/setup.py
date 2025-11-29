@@ -37,7 +37,7 @@ def set_seed(args):
     if hasattr(torch_accelerator_module, "manual_seed_all"):
         torch_accelerator_module.manual_seed_all(args.seed)
 
-    torch.use_deterministic_algorithms()
+    torch.use_deterministic_algorithms(True)
 
     # Ensure deterministic behavior in cuDNN
     if torch.cuda.is_available():
