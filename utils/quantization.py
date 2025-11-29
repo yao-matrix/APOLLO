@@ -99,7 +99,8 @@ class QScaleLinear(nn.Module):
         torch_accelerator_module = getattr(torch, device_type)
 
         int8_weight, scales, zeros = _quantize_tensor_int8(weight.data, q_group_size=group_size)
-        torch_accelerator_module.empty_cache()
+        if hasattr(torch_accelerator_module, 'empty_cache'):
+            torch_accelerator_module.empty_cache()
 
         self.weight = Parameter(int8_weight, requires_grad=False).to(device) # Only Tensors of floating point and complex dtype can require gradients, using float_gradient to store the gradient
         
