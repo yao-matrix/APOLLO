@@ -34,7 +34,8 @@ def set_seed(args):
     # Set seed for all accelerators
     device_type = torch.accelerator.current_accelerator().type if hasattr(torch, "accelerator") else "cuda"
     torch_accelerator_module = getattr(torch, device_type)
-    torch_accelerator_module.manual_seed_all(args.seed)
+    if hasattr(torch_accelerator_module, "manual_seed_all"):
+        torch_accelerator_module.manual_seed_all(args.seed)
 
     torch.use_deterministic_algorithms()
 
