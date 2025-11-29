@@ -9,7 +9,7 @@ def parse_args(args):
 
     device_type = torch.accelerator.current_accelerator().type if hasattr(torch, "accelerator") else "cuda"
     torch_accelerator_module = getattr(torch, device_type)
-    bf16_supported = torch_accelerator_module.is_bf16_supported()
+    bf16_supported = torch_accelerator_module.is_bf16_supported() if hasattr(torch_accelerator_module, 'is_bf16_supported') else False
 
     ### Experiment setup ###
     parser.add_argument("--model_config", type=str, required=True)
